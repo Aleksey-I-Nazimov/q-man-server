@@ -1,0 +1,1 @@
+# Q-MAN. Queue manager. Topic postman. JMS service virtualization

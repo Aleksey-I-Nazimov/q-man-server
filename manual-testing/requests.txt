@@ -1,0 +1,81 @@
+-------------------
+http://localhost:8070/subscribe/to/kafka?topic=ESFL.GuidChange.JSON.V1&partition=0&pollTimeSec=50&groupId=q-man
+POST /subscribe/to/kafka?topic=ESFL.GuidChange.JSON.V1&partition=0&pollTimeSec=50&groupId=q-man HTTP/1.1
+Host: localhost:8070
+QMAN_KAFKA_SERVICE_CODE: Hellow qman
+QMAN_KAFKA_SERVICE_NAME: Qman
+
+-------------------
+http://localhost:8070/send/to/kafka?topic=ESFL.GuidChange.JSON.V1&partition=0
+POST /send/to/kafka?topic=ESFL.GuidChange.JSON.V1&partition=0 HTTP/1.1
+Host: localhost:8070
+QMAN_KAFKA_SERVICE_CODE: Hellow qman
+QMAN_KAFKA_SERVICE_NAME: Qman
+Content-Type: application/json
+Content-Length: 311
+
+{
+    "data": {
+        "client": {
+            "base": {
+                "guid": "33333"
+            },
+            "sources": [
+                {
+                    "systemInfo": {
+                        "guid": "111222"
+                    }
+                }
+            ]
+        }
+    }
+}
+
+-------------------
+http://localhost:8070/receive/from/kafka?topic=ESFL.GuidChange.JSON.V1&partition=0&pollTimeSec=3600&offset=37
+POST /receive/from/kafka?topic=ESFL.GuidChange.JSON.V1&partition=0&pollTimeSec=3600&offset=37 HTTP/1.1
+Host: localhost:8070
+QMAN_KAFKA_SERVICE_CODE: Hellow qman
+QMAN_KAFKA_SERVICE_NAME: Qman
+
+-------------------
+http://localhost:8070/send/to/ibm-mq?queue=DEV.QUEUE.1
+POST /send/to/ibm-mq?queue=DEV.QUEUE.1 HTTP/1.1
+Host: localhost:8070
+QMAN_IBM_MQ_SERVICE_CODE: Hellow qman
+QMAN_IBM_MQ_SERVICE_NAME: Qman
+Content-Type: application/json
+Content-Length: 310
+
+{
+    "data": {
+        "client": {
+            "base": {
+                "guid": "1115"
+            },
+            "sources": [
+                {
+                    "systemInfo": {
+                        "guid": "111222"
+                    }
+                }
+            ]
+        }
+    }
+}
+
+-------------------
+http://localhost:8070/receive/from/ibm-mq
+POST /receive/from/ibm-mq HTTP/1.1
+Host: localhost:8070
+Content-Type: application/json
+Content-Length: 114
+
+{
+    "queueName": "DEV.QUEUE.1",
+    "pollTimeout": "PT10S",
+    "messageSelector": "service_name = 'Qman'"
+}
+
+-------------------
+

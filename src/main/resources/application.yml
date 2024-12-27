@@ -1,0 +1,34 @@
+
+server:
+  port: 8070
+
+spring:
+  application:
+    jms-session-cache-size: 10
+    name: q-man
+
+q-man:
+  robot:
+    thread-pool-size: 2
+
+kafka:
+  broker: localhost:9092
+
+ibm:
+  mq:
+    queueManager: QM1
+    connName: localhost(1414)
+    channel: "DEV.ADMIN.SVRCONN"
+    user: admin
+    password: passw0rd
+
+logging:
+  level:
+    org:
+      numamo:
+        qman: DEBUG
+    com:
+      ibm:
+        mq:
+          spring:
+            boot: TRACE
